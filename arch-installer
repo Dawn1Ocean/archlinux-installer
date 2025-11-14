@@ -46,25 +46,25 @@ dialog_theme_config="$installer_home/dialog.conf"
 install_config="$installer_home/install.yaml"
 
 # Remote Installer URL
-remote_installer_url="https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/arch-installer"
+remote_installer_url="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/arch-installer"
 
 # Remote Installer Config URL
-remote_installer_config_url="https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/acu_config.yaml"
+remote_installer_config_url="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/acu_config.yaml"
 
 # Full Language list
-lang_list="https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/language.yaml"
+lang_list="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/language.yaml"
 
 # Full Kernel list
-kernel_list="https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/kernel.yaml"
+kernel_list="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/kernel.yaml"
 
 # Full Desktop Environment list
-de_list="https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/desktop.yaml"
+de_list="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/desktop.yaml"
 
 # Full Post Install list
-postinstall_list="https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/postinstall.yaml"
+postinstall_list="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/postinstall.yaml"
 
 # (Optional) Update Mirrorlist URL
-mirrorlist_url="https://raw.githubusercontent.com/1usOS/PKGBUILDs/refs/heads/misc/pacman-mirrorlist/mirrorlist"
+mirrorlist_url="https://gh-proxy.org/https://raw.githubusercontent.com/1usOS/PKGBUILDs/refs/heads/misc/pacman-mirrorlist/mirrorlist"
 
 # Ping server list for internet check
 # ping Google, Cloudflare and China Mobile DNS (for China users)
@@ -245,7 +245,7 @@ status_bar() {
 
         if [ "$internet_available" = 1 ]; then
             if [ -z "$checked_for_updates" ]; then
-                if curl -s https://raw.githubusercontent.com/ >/dev/null; then
+                if curl -s https://gh-proxy.org/https://raw.githubusercontent.com/ >/dev/null; then
                     store_var "ssl_check" "1"
                     check_installer_updates
                     checked_for_updates=1
@@ -716,11 +716,11 @@ network_menu() {
             https_status="OK"
         fi
         github_status="FAIL"
-        if curl -s https://github.com/ >/dev/null; then
+        if curl -s https://gh-proxy.org/https://github.com/ >/dev/null; then
             github_status="OK"
         fi
         ghusercon_status="FAIL"
-        if curl -s https://raw.githubusercontent.com/ >/dev/null; then
+        if curl -s https://gh-proxy.org/https://raw.githubusercontent.com/ >/dev/null; then
             ghusercon_status="OK"
         fi
         ipapi_status="FAIL"
@@ -973,7 +973,7 @@ check_installer_updates() {
                     sudo rm -rf arch-installer
                     # Update ACU
                     echo "Updating ACU (Configuration Utility) ..."
-                    sudo curl -o /usr/bin/acu -L "https://raw.githubusercontent.com/kwankiu/acu/$remote_acuver/acu"
+                    sudo curl -o /usr/bin/acu -L "https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/acu/$remote_acuver/acu"
                     sudo chmod +x /usr/bin/acu
                     echo "Updating Installer ACU Config ..."
                     sudo mkdir -p /usr/lib/installer/.acu/config
@@ -1108,15 +1108,15 @@ install_part1() {
     local install_repo_list=($install_repo)
     for ((i = 0; i < ${#install_repo_list[@]}; i++)); do
         if [ "${install_repo_list[i]}" = "7Ji" ]; then
-            acu rem set 7Ji https://github.com/7Ji/archrepo/releases/download/\$arch pacman
+            acu rem set 7Ji https://gh-proxy.org/https://github.com/7Ji/archrepo/releases/download/\$arch pacman
         elif [ "${install_repo_list[i]}" = "rockchip" ]; then
-            acu rem set rockchip https://github.com/1usOS/PKGBUILDs/releases/download/\$arch pacman
+            acu rem set rockchip https://gh-proxy.org/https://github.com/1usOS/PKGBUILDs/releases/download/\$arch pacman
         elif [ "${install_repo_list[i]}" = "asahi" ]; then
-            acu rem set asahi https://github.com/1usOS/PKGBUILDs/releases/download/\$arch pacman
+            acu rem set asahi https://gh-proxy.org/https://github.com/1usOS/PKGBUILDs/releases/download/\$arch pacman
         elif [ "${install_repo_list[i]}" = "asahi-alarm" ]; then
-            acu rem set asahi-alarm https://github.com/asahi-alarm/asahi-alarm/releases/download/\$arch pacman
+            acu rem set asahi-alarm https://gh-proxy.org/https://github.com/asahi-alarm/asahi-alarm/releases/download/\$arch pacman
         elif [ "${install_repo_list[i]}" = "misc" ]; then
-            acu rem set misc https://github.com/1usOS/PKGBUILDs/releases/download/\$arch pacman
+            acu rem set misc https://gh-proxy.org/https://github.com/1usOS/PKGBUILDs/releases/download/\$arch pacman
         fi
     done
 
