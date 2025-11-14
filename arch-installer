@@ -68,7 +68,7 @@ mirrorlist_url="https://gh-proxy.org/https://raw.githubusercontent.com/1usOS/PKG
 
 # Ping server list for internet check
 # ping Google, Cloudflare and China Mobile DNS (for China users)
-ping_servers=("google.com" "1.1.1.1" "114.114.114.114") 
+ping_servers=("www.zju.edu.cn") 
 
 # (Optional) Target Device for Installation (comment this to auto detect from devicetree)
 #install_target="radxa-rock-5b"
