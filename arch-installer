@@ -46,22 +46,22 @@ dialog_theme_config="$installer_home/dialog.conf"
 install_config="$installer_home/install.yaml"
 
 # Remote Installer URL
-remote_installer_url="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/arch-installer"
+remote_installer_url="https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/arch-installer"
 
 # Remote Installer Config URL
-remote_installer_config_url="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/acu_config.yaml"
+remote_installer_config_url="https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/config/acu_config.yaml"
 
 # Full Language list
-lang_list="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/language.yaml"
+lang_list="https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/config/language.yaml"
 
 # Full Kernel list
-kernel_list="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/kernel.yaml"
+kernel_list="https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/config/kernel.yaml"
 
 # Full Desktop Environment list
-de_list="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/desktop.yaml"
+de_list="https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/config/desktop.yaml"
 
 # Full Post Install list
-postinstall_list="https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/postinstall.yaml"
+postinstall_list="https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/config/postinstall.yaml"
 
 # (Optional) Update Mirrorlist URL
 mirrorlist_url="https://gh-proxy.org/https://raw.githubusercontent.com/1usOS/PKGBUILDs/refs/heads/misc/pacman-mirrorlist/mirrorlist"
@@ -973,7 +973,7 @@ check_installer_updates() {
                     sudo rm -rf arch-installer
                     # Update ACU
                     echo "Updating ACU (Configuration Utility) ..."
-                    sudo curl -o /usr/bin/acu -L "https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/acu/$remote_acuver/acu"
+                    sudo curl -o /usr/bin/acu -L "https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/acu/$remote_acuver/acu"
                     sudo chmod +x /usr/bin/acu
                     echo "Updating Installer ACU Config ..."
                     sudo mkdir -p /usr/lib/installer/.acu/config

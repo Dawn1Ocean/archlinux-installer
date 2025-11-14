@@ -25,7 +25,7 @@ branch=main
 rootfs_url="http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz"
 
 # Custom Binary Repo URL for building the installer or images
-adrepo_url="https://api.github.com/repos/kwankiu/archlinux-installer/releases/tags/kernel"
+adrepo_url="https://gh-proxy.org/https://api.github.com/repos/Dawn1Ocean/archlinux-installer/releases/tags/kernel"
 
 # Required ACU version
 acuver=0.1.6
@@ -484,7 +484,7 @@ for arg in "$@"; do
         ;;
     -d | --dev)
         echo "Getting the latest installation script from dev ..."
-        bash <(curl -fsSL https://raw.githubusercontent.com/kwankiu/archlinux-installer/dev/archlinux-installer) ${@:2}
+        bash <(curl -fsSL https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/dev/archlinux-installer) ${@:2}
         exit 1
         ;;
     --get-pkg)
@@ -938,7 +938,7 @@ fi
 title
 
 colorecho "$GREEN" "Loading boot config list ..."
-eval $(bash <(curl -fsSL https://raw.githubusercontent.com/kwankiu/acu/$acuver/scripts/acu_parser.sh) https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/boot.yaml)
+eval $(bash <(curl -fsSL https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/acu/$acuver/scripts/acu_parser.sh) https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/config/boot.yaml)
 
 for ((i = 0; i < ${#boot_dtb[@]}; i++)); do
     # Add tags
@@ -1066,14 +1066,14 @@ colorecho "$GREEN" "Downloading Installer ..."
 if [ "$arginstaller" == "installer" ] || [ -z "$arginstaller" ]; then
     installer_name="arch-installer"
     compiled_pkg_dir="/usr/lib/installer/packages"
-    curl -LJO https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/$installer_name
+    curl -LJO https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/$installer_name
     # Download and Copy ACU
-    curl -LJO https://raw.githubusercontent.com/kwankiu/acu/$acuver/acu
+    curl -LJO https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/acu/$acuver/acu
     sudo chmod +x acu
     sudo cp -r acu "$root_mount_dir/usr/bin/acu"
     sudo rm -rf acu
     # Download and Copy ACU Config for TUI Installer
-    curl -LJO https://raw.githubusercontent.com/kwankiu/archlinux-installer/$branch/config/acu_config.yaml
+    curl -LJO https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/$branch/config/acu_config.yaml
     sudo mkdir -p "$root_mount_dir/usr/lib/installer/.acu/config"
     sudo cp -r acu_config.yaml "$root_mount_dir/usr/lib/installer/.acu/config/config.yaml"
     sudo rm -rf acu_config.yaml
@@ -1089,7 +1089,7 @@ sudo cp -r "$installer_name" "$root_mount_dir/usr/bin/installer"
 
 if [ ! -z "$is_img" ]; then
     colorecho "$GREEN" "Downloading growpart ..."
-    curl -LJO https://raw.githubusercontent.com/canonical/cloud-utils/main/bin/growpart
+    curl -LJO https://gh-proxy.org/https://raw.githubusercontent.com/canonical/cloud-utils/main/bin/growpart
     colorecho "$GREEN" "Copying growpart ..."
     sudo chmod +x growpart
     sudo cp -r "growpart" "$root_mount_dir/usr/bin/growpart"

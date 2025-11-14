@@ -31,7 +31,7 @@ sudo () {
 
 ################################################################
 # Configure variables
-gh_repo="kwankiu/archlinux-installer"
+gh_repo="Dawn1Ocean/archlinux-installer"
 file_prefix=""
 file_suffix="-archlinux-installer"
 file_extension=".img.xz"
@@ -69,7 +69,7 @@ done
 ################################################################
 # Get latest release tag
     if [ -z "$release_tag" ]; then
-        release_tag="$(curl -s "https://api.github.com/repos/${gh_repo}/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')"
+        release_tag="$(curl -s "https://gh-proxy.com/https://api.github.com/repos/${gh_repo}/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')"
     fi
 # Auto detect install target from devicetree
     if [ -z "$install_target" ]; then
@@ -106,10 +106,10 @@ if [ -n "$install_target" ]; then
     esac
     case "$release_tag" in
     UEFI*)
-        image_url="https://github.com/${gh_repo}/releases/download/${release_tag}/${install_target}${file_suffix}-UEFI${file_extension}"
+        image_url="https://gh-proxy.com/https://github.com/${gh_repo}/releases/download/${release_tag}/${install_target}${file_suffix}-UEFI${file_extension}"
         ;;
     *)
-        image_url="https://github.com/${gh_repo}/releases/download/${release_tag}/${install_target}${file_suffix}${file_extension}"
+        image_url="https://gh-proxy.com/https://github.com/${gh_repo}/releases/download/${release_tag}/${install_target}${file_suffix}${file_extension}"
         ;;
     esac
     curl -LO $image_url
@@ -117,17 +117,17 @@ elif [ -n "$install_disk" ]; then
     # Download generic image
     colorecho "$GREEN" "Unable to retrieve device model, looking for the latest generic image ..."
     install_target="generic"
-    image_url="https://github.com/${gh_repo}/releases/download/UEFI-${release_tag}/${install_target}${file_suffix}-UEFI${file_extension}"
+    image_url="https://gh-proxy.com/https://github.com/${gh_repo}/releases/download/UEFI-${release_tag}/${install_target}${file_suffix}-UEFI${file_extension}"
     curl -LO $image_url
 elif command -v bash >/dev/null; then
     # Download the Installer to current root
     colorecho "$GREEN" "Downloading the Installer to current root ..."
     colorecho "$GREEN" "Tips: To start the installer, run 'installer' (as root)."
     # Download growpart
-    sudo curl -L https://raw.githubusercontent.com/canonical/cloud-utils/main/bin/growpart -o /usr/bin/growpart
+    sudo curl -L https://gh-proxy.com/https://raw.githubusercontent.com/canonical/cloud-utils/main/bin/growpart -o /usr/bin/growpart
     sudo chmod +x /usr/bin/growpart
     # Download the Installer
-    curl https://raw.githubusercontent.com/kwankiu/archlinux-installer/${release_tag}/arch-installer | bash -s -- --reinstall
+    curl https://gh-proxy.com/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/${release_tag}/arch-installer | bash -s -- --reinstall
 else
     colorecho "$GREEN" "Error bash is not available on your system."
 fi

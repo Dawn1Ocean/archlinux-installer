@@ -74,14 +74,14 @@ jobs:
             case $model in
               radxa-* | khadas-* | mixtile-* | mekotronics-* | stationpc-* | hinlink-* | firefly-* | orangepi-* | nanopi-* | nanopc-* | indiedroid-*)
                 if [[ "$model" == "orangepi"* ]] || [[ "$model" == "nanopi"* ]] || [[ "$model" == "nanopc"* ]] || [[ "$model" == "indiedroid"* ]] || [[ "$model" == "radxa-cm"* ]]; then
-                  bootfw_url="https://github.com/kwankiu/edk2-rk3588/releases/download/v1.1/${model}_UEFI_Release_v1.1.img"
+                  bootfw_url="https://gh-proxy.org/https://github.com/kwankiu/edk2-rk3588/releases/download/v1.1/${model}_UEFI_Release_v1.1.img"
                 else
-                  bootfw_url="https://github.com/kwankiu/edk2-rk3588/releases/download/v1.1/${model#*-}_UEFI_Release_v1.1.img"
+                  bootfw_url="https://gh-proxy.org/https://github.com/kwankiu/edk2-rk3588/releases/download/v1.1/${model#*-}_UEFI_Release_v1.1.img"
                 fi
                 args="--kernel=linux-aarch64-rockchip-bsp6.1-joshua-git --addpkg=linux-firmware-joshua-git -b --bootpartstart=9MiB --bootfirmware=firmware.img"
                 ;;
               fydetab-*)
-                bootfw_url="https://github.com/kwankiu/edk2-rk3588/releases/download/v1.1/${model}_UEFI_Release_v1.1.img"
+                bootfw_url="https://gh-proxy.org/https://github.com/kwankiu/edk2-rk3588/releases/download/v1.1/${model}_UEFI_Release_v1.1.img"
                 args="--kernel=linux-aarch64-rockchip-bsp6.1-fydetab-git --addpkg=linux-firmware-joshua-git,firmware-fydetab -b --bootpartstart=9MiB --bootfirmware=firmware.img"
                 ;;
               asahi)
@@ -108,13 +108,13 @@ jobs:
         env:
           args: ${{ env.ARGS }}
         run: |
-          bash <(curl -fsSL https://raw.githubusercontent.com/kwankiu/archlinux-installer/main/create-installation-media) --model=${{ matrix.model_name }} --image=${{ matrix.model_name }}-archlinux-installer-uefi.img --bootloader=grub -c $args
+          bash <(curl -fsSL https://gh-proxy.org/https://raw.githubusercontent.com/kwankiu/archlinux-installer/main/create-installation-media) --model=${{ matrix.model_name }} --image=${{ matrix.model_name }}-archlinux-installer-uefi.img --bootloader=grub -c $args
           cp -r out/*-archlinux-*.*.xz .
 
       - name: Add xze metadata to Image (OOWOW)
         if: startsWith(matrix.model_name, 'khadas')
         run: |
-          bash <(curl -fsSL https://raw.githubusercontent.com/khadas/krescue/master/tools/xze) "${{ matrix.model_name }}-archlinux-installer-uefi.img.xz" \
+          bash <(curl -fsSL https://gh-proxy.org/https://raw.githubusercontent.com/khadas/krescue/master/tools/xze) "${{ matrix.model_name }}-archlinux-installer-uefi.img.xz" \
              --meta \
              label="Arch Linux Installer" \
              builder="Arch Linux Installer" \

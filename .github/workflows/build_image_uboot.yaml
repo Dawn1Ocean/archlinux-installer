@@ -113,11 +113,11 @@ jobs:
                 # URL to download u-boot for the board
                 if [[ "$model" == "radxa-rock-5c" ]] || [[ "$model" == "radxa-cm5"* ]] || [[ "$model" == "radxa-nx5"* ]]; then
                   # RK3582 Patch
-                  uboot_url="https://github.com/kwankiu/archlinux-installer/releases/download/kernel/uboot-radxa-rknext_2017.09-1_arm64.deb"
+                  uboot_url="https://gh-proxy.org/https://github.com/Dawn1Ocean/archlinux-installer/releases/download/kernel/uboot-radxa-rknext_2017.09-1_arm64.deb"
                 elif [[ "$model" == "radxa-rock-5"* ]] || [[ "$model" == "radxa-rock-2"* ]] || [[ "$model" == "radxa-zero3" ]]; then
-                  uboot_url="https://radxa-repo.github.io/bookworm-test/pool/main/u/u-boot-rk2410/u-boot-rk2410_2017.09-46-575d1a1_arm64.deb"
+                  uboot_url="https://gh-proxy.org/https://radxa-repo.github.io/bookworm-test/pool/main/u/u-boot-rk2410/u-boot-rk2410_2017.09-46-575d1a1_arm64.deb"
                 else
-                  uboot_url="https://github.com/radxa-repo/bullseye/raw/gh-pages/.pool/u-boot-latest_2023.10-9-eed05a18_arm64.deb"
+                  uboot_url="https://gh-proxy.org/https://github.com/radxa-repo/bullseye/raw/gh-pages/.pool/u-boot-latest_2023.10-9-eed05a18_arm64.deb"
                 fi
                 ;;
               khadas-*)
@@ -169,19 +169,19 @@ jobs:
         env:
           args: ${{ env.ARGS }}
         run: |
-          bash <(curl -fsSL https://raw.githubusercontent.com/kwankiu/archlinux-installer/main/create-installation-media) --model=${{ matrix.model_name }} --image=${{ matrix.model_name }}-archlinux-installer.img -c $args
+          bash <(curl -fsSL https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/archlinux-installer/main/create-installation-media) --model=${{ matrix.model_name }} --image=${{ matrix.model_name }}-archlinux-installer.img -c $args
           cp -r out/*-archlinux-*.img.xz .
 
       - name: Add xze metadata to Image (OOWOW)
         if: startsWith(matrix.model_name, 'khadas')
         run: |
-          bash <(curl -fsSL https://raw.githubusercontent.com/khadas/krescue/master/tools/xze) "${{ matrix.model_name }}-archlinux-installer.img.xz" \
+          bash <(curl -fsSL https://gh-proxy.org/https://raw.githubusercontent.com/khadas/krescue/master/tools/xze) "${{ matrix.model_name }}-archlinux-installer.img.xz" \
              --meta \
              label="Arch Linux Installer" \
              builder="Arch Linux Installer" \
              date="$(LANG=C TZ= date)" \
              match=BOARD=$(echo "${{ matrix.model_name }}" | awk -F'-' '{print toupper(substr($2,1,1)) substr($2,2)}') \
-             link=https://github.com/kwankiu/archlinux-installer/wiki \
+             link=https://gh-proxy.org/https://github.com/Dawn1Ocean/archlinux-installer/wiki \
              duration=250 \
              desc="Community-built Arch Linux Installer for ARM (Aarch64), Image built for $(echo "${{ matrix.model_name }}" | sed 's/-/ /g; s/\b\(.\)/\u\1/g') on $(LANG=C TZ= date)"
           # Rename image name to begin with the board model (required to prevent OOWOW hiding the image)

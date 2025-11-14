@@ -84,7 +84,7 @@ postinstall:
           sudo rm -rf /etc/netctl/*
           #2 Enable AP6275P bluetooth
           echo "Enable AP6275P Bluetooth ..."
-          curl -LJO https://github.com/kwankiu/archlinux-installer/releases/download/kernel/brcm_patchram_plus
+          curl -LJO https://gh-proxy.org/https://github.com/kwankiu/archlinux-installer/releases/download/kernel/brcm_patchram_plus
           sudo chmod +x brcm_patchram_plus
           sudo mv brcm_patchram_plus /usr/bin/brcm_patchram_plus
           echo -e '[Unit]\nDescription=AP6275P Bluetooth service\nAfter=bluetooth.target\n\n[Service]\nType=forking\nExecStartPre=/usr/sbin/rfkill unblock all\nExecStart=/usr/bin/brcm_patchram_plus --enable_hci --no2bytes --use_baudrate_for_download --tosleep 200000 --baudrate 1500000 --patchram /lib/firmware/ap6275p/BCM4362A2.hcd /dev/ttyS9\nTimeoutSec=0\nRemainAfterExit=yes\n[Install]\nWantedBy=multi-user.target' | sudo tee /usr/lib/systemd/system/bt_ap6275p.service

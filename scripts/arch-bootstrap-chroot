@@ -152,7 +152,7 @@ colorecho() {
     pacman -Syu sudo --needed --noconfirm
 
     echo "Installing ACU (Configuration Utility) ..."
-    curl -o /usr/bin/acu -L "https://raw.githubusercontent.com/kwankiu/acu/main/acu"
+    curl -o /usr/bin/acu -L "https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/acu/main/acu"
     chmod +x /usr/bin/acu
     
     echo "Removing default alarm account"
@@ -183,7 +183,7 @@ END
     pacman -Syu sudo --needed --noconfirm
 
     echo "Installing ACU (Configuration Utility) ..."
-    curl -o /usr/bin/acu -L "https://raw.githubusercontent.com/kwankiu/acu/main/acu"
+    curl -o /usr/bin/acu -L "https://gh-proxy.org/https://raw.githubusercontent.com/Dawn1Ocean/acu/main/acu"
     chmod +x /usr/bin/acu
     
     echo "Setting up user account ..."
